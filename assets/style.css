@@ -1,0 +1,165 @@
+/* Importar una fuente moderna de Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
+
+/* --- GENERALES Y TIPOGRAFÍA --- */
+:root {
+    --color-bg-dark: #1e1e1e; /* Fondo principal oscuro */
+    --color-card-dark: #2a2a2a; /* Fondo de tarjetas */
+    --color-text-light: #f0f0f0; /* Texto claro */
+    --color-accent: #00bcd4; /* Cian brillante para acentos */
+    --color-line: #444444; /* Color de la línea de tiempo */
+    --color-shadow: rgba(0, 0, 0, 0.4);
+}
+
+body {
+    background-color: var(--color-bg-dark);
+    color: var(--color-text-light);
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+}
+
+h1, h2, h5 {
+    font-weight: 600;
+}
+
+.navbar {
+    background-color: var(--color-card-dark) !important;
+    border-bottom: 2px solid var(--color-line);
+}
+
+.btn-outline-light {
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+    transition: all 0.3s ease;
+}
+
+.btn-outline-light:hover {
+    background-color: var(--color-accent);
+    color: var(--color-bg-dark);
+}
+
+/* --- ESTILOS DE LA LÍNEA DE TIEMPO (index.php) --- */
+
+.timeline {
+    position: relative;
+    padding: 20px 0;
+}
+
+/* Línea vertical central */
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 3px; 
+    background: var(--color-line);
+    left: 50%;
+    margin-left: -1.5px;
+    z-index: 1; 
+}
+
+/* Contenedor de un evento */
+.timeline-event {
+    position: relative;
+    margin-bottom: 40px; 
+    padding: 0;
+    z-index: 2;
+}
+
+.timeline-event .card {
+    background-color: var(--color-card-dark);
+    color: var(--color-text-light);
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px var(--color-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline-event .card:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 15px 30px var(--color-shadow);
+}
+
+.card-title {
+    color: var(--color-accent); 
+    font-weight: 700;
+}
+
+.card-subtitle {
+    font-weight: 400;
+}
+
+/* Círculo (Hito) en la línea */
+.timeline-event::after {
+    content: '';
+    position: absolute;
+    top: 25px;
+    width: 20px; 
+    height: 20px;
+    background: var(--color-accent);
+    border: 3px solid var(--color-bg-dark); 
+    border-radius: 50%;
+    z-index: 100;
+}
+
+/* Posicionar el círculo a la izquierda o derecha de la línea central */
+.timeline-event:nth-child(odd)::after {
+    left: calc(50% - 22px);
+}
+
+.timeline-event:nth-child(even)::after {
+    right: calc(50% - 22px);
+}
+
+/* Alternar la posición del contenido */
+.timeline-event:nth-child(odd) {
+    margin-right: 53%; 
+    text-align: right;
+}
+
+.timeline-event:nth-child(even) {
+    margin-left: 53%; 
+    text-align: left;
+}
+
+/* Responsive: Una sola columna para pantallas pequeñas */
+@media (max-width: 768px) {
+    .timeline::before {
+        left: 20px; 
+    }
+
+    .timeline-event {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding-left: 50px; 
+        text-align: left !important;
+    }
+
+    .timeline-event::after {
+        left: 17px !important; 
+        right: auto !important;
+    }
+}
+
+/* --- ESTILOS DEL PANEL DE ADMINISTRACIÓN (admin_panel.php) --- */
+
+.card {
+    background-color: var(--color-card-dark);
+    color: var(--color-text-light);
+    border: 1px solid var(--color-line);
+}
+
+.card-header {
+    background-color: var(--color-accent) !important;
+    color: var(--color-bg-dark) !important;
+    font-weight: 700;
+}
+
+.form-control, .form-select, .form-control:focus, .form-select:focus {
+    background-color: #3b3b3b;
+    border-color: var(--color-line);
+    color: var(--color-text-light);
+}
+.form-control::placeholder {
+    color: #999;
+}
